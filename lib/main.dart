@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+const String _name = "Suneet Srivastava";
 void main() => runApp(new ChatApp());
 
 class ChatApp extends StatelessWidget {
@@ -24,7 +24,7 @@ class ChatScreen extends StatefulWidget {
 //
 class ChatScreenState extends State<ChatScreen> {
   final TextEditingController textEditingController =
-      new TextEditingController();
+  new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +34,11 @@ class ChatScreenState extends State<ChatScreen> {
           centerTitle: true,
           textTheme: TextTheme(
               title:
-                  new TextStyle(fontFamily: 'Raleway-Regular', fontSize: 20.0)),
+              new TextStyle(fontFamily: 'Raleway-Regular', fontSize: 20.0)),
           backgroundColor: Colors.redAccent,
         ),
         body: new Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
             color: Colors.white,
             height: 20.0,
             child: new Row(
@@ -51,7 +51,6 @@ class ChatScreenState extends State<ChatScreen> {
                         hintText: "What's on your mind!"),
                   ),
                 ),
-
                 new Container(
                   margin: EdgeInsets.symmetric(horizontal: 1.0),
                   child: new IconButton(
@@ -67,5 +66,44 @@ class ChatScreenState extends State<ChatScreen> {
 
   void _handleSubmitted(String text) {
     textEditingController.clear();
+  }
+}
+
+class ChatMessage extends StatelessWidget {
+  final String text;
+  ChatMessage(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0),
+      child: new Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Container(
+              margin: EdgeInsets.only(right: 16.0),
+              child: new CircleAvatar(child: new Text(_name[0]))
+
+          ),
+
+          new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(_name, style: Theme
+                  .of(context)
+                  .textTheme
+                  .subhead,
+              ),
+              new Container(
+                margin: const EdgeInsets.only(top: 5.0),
+                child: new Text(text),
+              )
+
+            ],
+          )
+        ],
+      ),
+
+    )
   }
 }
