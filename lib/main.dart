@@ -29,31 +29,40 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Chat App"),
-        centerTitle: true,
-        textTheme: TextTheme(
-            title:
-                new TextStyle(fontFamily: 'Raleway-Regular', fontSize: 20.0)),
-        backgroundColor: Colors.redAccent,
-      ),
-
-
-      body: new Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10.0),
-        color: Colors.white,
-        height: 20.0,
-        child:new TextField(
-          controller: textEditingController,
-          style: TextStyle(fontFamily: 'Raleway-Regular'),
-          onSubmitted: _handleSubmitted,
-          decoration:
-              new InputDecoration.collapsed(hintText: "What's on your mind!"),
+        appBar: new AppBar(
+          title: new Text("Chat App"),
+          centerTitle: true,
+          textTheme: TextTheme(
+              title:
+                  new TextStyle(fontFamily: 'Raleway-Regular', fontSize: 20.0)),
+          backgroundColor: Colors.redAccent,
         ),
-      ),
-    );
+        body: new Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
+            color: Colors.white,
+            height: 20.0,
+            child: new Row(
+              children: <Widget>[
+                new Flexible(
+                  child: new TextField(
+                    controller: textEditingController,
+                    onSubmitted: _handleSubmitted,
+                    decoration: new InputDecoration.collapsed(
+                        hintText: "What's on your mind!"),
+                  ),
+                ),
 
-
+                new Container(
+                  margin: EdgeInsets.symmetric(horizontal: 1.0),
+                  child: new IconButton(
+                      icon: new Icon(Icons.send),
+                      iconSize: 25.0,
+                      color: Colors.red,
+                      onPressed: () =>
+                          _handleSubmitted(textEditingController.text)),
+                )
+              ],
+            )));
   }
 
   void _handleSubmitted(String text) {
